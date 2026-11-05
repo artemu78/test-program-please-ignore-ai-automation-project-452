@@ -1,0 +1,21 @@
+{
+  "name": "test-program-please-ignore-ai-automation-project-452",
+  "version": "1.0.0",
+  "description": "[![hexlet-check](https://github.com/artemu78/test-program-please-ignore-ai-automation-project-452/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/artemu78/test-program-please-ignore-ai-automation-project-452/actions)",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "echo \"Error: no lint specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artemu78/test-program-please-ignore-ai-automation-project-452.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/artemu78/test-program-please-ignore-ai-automation-project-452/issues"
+  },
+  "homepage": "https://github.com/artemu78/test-program-please-ignore-ai-automation-project-452#readme"
+}
