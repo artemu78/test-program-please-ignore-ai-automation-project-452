@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Анна Смирнова",
+    "email": "anna.smirnova@example.com",
+    "topics": ["frontend", "career"]
+  },
+  {
+    "name": "Олег Петров",
+    "email": "oleg.petrov@example.com",
+    "topics": ["backend", "devops"]
+  },
+  {
+    "name": "Ирина Ким",
+    "email": "irina.kim@example.com",
+    "topics": ["frontend", "testing"]
+  },
+  {
+    "name": "Дмитрий Соколов",
+    "email": "dmitry.sokolov@example.com",
+    "topics": ["data", "backend"]
+  },
+  {
+    "name": "Елена Волкова",
+    "email": "elena.volkova@example.com",
+    "topics": ["career"]
+  }
+]
