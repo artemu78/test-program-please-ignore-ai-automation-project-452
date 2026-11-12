@@ -1,0 +1,1 @@
+export default [{ ignores: ['node_modules/**'], languageOptions: { ecmaVersion: 'latest', sourceType: 'module', globals: { Buffer: 'readonly', process: 'readonly', fetch: 'readonly', AbortSignal: 'readonly', URL: 'readonly', console: 'readonly' } }, rules: { 'no-unused-vars': 'error', 'no-undef': 'error' } }];

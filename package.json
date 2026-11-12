@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "echo \"Error: no lint specified\" && exit 1"
+    "test": "vitest run",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/artemu78/test-program-please-ignore-ai-automation-project-452/issues"
   },
-  "homepage": "https://github.com/artemu78/test-program-please-ignore-ai-automation-project-452#readme"
+  "homepage": "https://github.com/artemu78/test-program-please-ignore-ai-automation-project-452#readme",
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "vitest": "^3.0.0"
+  }
 }

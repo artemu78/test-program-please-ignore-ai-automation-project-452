@@ -1,42 +1,40 @@
 # Автоматизация записи на консультацию
 
-[![hexlet-check](https://github.com/artemu78/test-program-please-ignore-ai-automation-project-452/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/artemu78/test-program-please-ignore-ai-automation-project-452/actions)
+Serverless-функция принимает POST-заявку с именем, почтой, темой и временем ISO 8601 с часовым поясом. Она проверяет рабочее время по Москве, выбирает консультанта по теме и создаёт событие CalDAV с приглашёнными клиентом и консультантом.
 
-Напишите serverless-функцию на JavaScript в Яндекс Облаке, которая заменяет менеджера
-онлайн-школы. Функция принимает заявку с сайта, проверяет данные и рабочее время по Москве,
-выбирает консультанта по теме и ставит событие в Яндекс Календарь по CalDAV, а календарь
-рассылает клиенту приглашение. Код живёт в репозитории, покрыт тестами и уезжает в облако
-одной командой.
+## Локальная проверка
 
-Учебный проект Хекслета: https://ru.hexlet.io/programs/test-program-please-ignore-ai-automation
-Как это должно работать: https://cdn6.hexlet.io/12Q5BFPbGEZ1.gif
-
-## Стек
-
-- JavaScript
-
-## Установка
-
-<!-- Опишите установку: клонирование, зависимости, переменные окружения -->
+Требуется Node.js 22 или новее.
 
 ```bash
-git clone https://github.com/artemu78/test-program-please-ignore-ai-automation-project-452.git
-cd test-program-please-ignore-ai-automation-project-452
+npm ci
+make lint
+make test
 ```
 
-## Использование
+Формат заявки:
 
-<!-- Добавьте примеры запуска и запись asciinema — именно это смотрит работодатель -->
+```json
+{"name":"Мария","email":"maria@example.com","topic":"frontend","time":"2026-11-17T12:00:00+03:00"}
+```
 
----
+Ответы: `201` с `consultant`, `start`, `end`; `400` при неверной заявке; `422` при неподходящей теме или времени; `502` при отказе календаря. `OPTIONS` возвращает `204` и CORS-заголовки.
 
-<details>
-<summary>Автоматические тесты Хекслета</summary>
+## Развёртывание
 
-Тесты запускаются на каждый коммит. За запуск отвечает файл `.github/workflows/hexlet-check.yml` — не удаляйте и не переименовывайте ни его, ни репозиторий.
+Нужны настроенные `yc` и Яндекс Календарь. Один раз создайте публичную функцию:
 
-</details>
+```bash
+yc serverless function create --name booking
+yc serverless function allow-unauthenticated-invoke booking
+```
 
-## О Хекслете
+Создайте пароль приложения CalDAV и задайте переменные окружения в терминале (не добавляйте их в репозиторий): `CALDAV_URL` — адрес календаря с завершающим `/`, `CALDAV_USER` — логин Яндекс ID, `CALDAV_PASSWORD` — пароль приложения. Затем выполните `make deploy`. Адрес функции: `yc serverless function get booking`, поле `http_invoke_url`.
 
-[Хекслет](https://ru.hexlet.io/) — школа программирования: авторские программы обучения с практикой, поддержкой наставников и реальными проектами, которые остаются в резюме. Этот репозиторий — один из таких проектов.
+```bash
+curl -X POST 'https://functions.yandexcloud.net/<id>' \
+  -H 'Content-Type: application/json' \
+  -d '{"name":"Мария","email":"maria@example.com","topic":"frontend","time":"2026-11-17T12:00:00+03:00"}'
+```
+
+Проверка формы на сайте школы и доставки письма выполняется после развёртывания с реальным календарём.
