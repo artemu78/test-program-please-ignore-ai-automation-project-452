@@ -1,4 +1,4 @@
-.PHONY: install setup lint test deploy
+.PHONY: install setup lint test package deploy
 install:
 	npm ci
 setup: install
@@ -18,3 +18,7 @@ deploy:
 		--execution-timeout 10s \
 		--source-path function.zip \
 		--environment "CALDAV_URL=$(CALDAV_URL),CALDAV_USER=$(CALDAV_USER),CALDAV_PASSWORD=$(CALDAV_PASSWORD)"
+
+package:
+	rm -f infra/booking.zip
+	zip -r infra/booking.zip index.js src consultants.json package.json package-lock.json
